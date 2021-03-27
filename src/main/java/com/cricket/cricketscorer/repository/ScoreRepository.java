@@ -1,5 +1,6 @@
 package com.cricket.cricketscorer.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +16,7 @@ public interface ScoreRepository extends JpaRepository<Score, Long> {
 	@Query("Select s from Score s where s.currentTimeStamp = (Select max(s2.currentTimeStamp) from Score s2 where s2.matchId = :matchNum ) "
 			+ "and s.matchId= :matchNum ")
 	Optional<Score> findLatestScoreEntry( @Param("matchNum") Long matchId);
+	
+	List<Score> findByMatch(Long matchId);
 
 }

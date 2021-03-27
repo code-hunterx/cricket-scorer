@@ -1,6 +1,7 @@
 package com.cricket.cricketscorer.service.serviceimpl;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class ScoreServiceImpl implements ScoreService {
 	MatchRepository matchRepo;
 	
 	@Override
-	public Score addScore(Score score) {
-		return scoreRepo.save(score);
+	public Optional<Score> addScore(Score score) {
+		return Optional.ofNullable(scoreRepo.save(score));
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class ScoreServiceImpl implements ScoreService {
 	}
 
 	@Override
-	public Score score(ScoreDto scoreDto) {
+	public Optional<Score> score(ScoreDto scoreDto) {
 		Optional<Score> optScore = scoreRepo.findLatestScoreEntry(scoreDto.getMatchId());
 		Score newScore = new Score();
 		if(!optScore.isPresent()) {
@@ -81,7 +82,7 @@ public class ScoreServiceImpl implements ScoreService {
 				
 					
 		}
-		return newScore;
+		return Optional.ofNullable(newScore);
 	}
 	
 	
@@ -123,7 +124,11 @@ public class ScoreServiceImpl implements ScoreService {
 	public Optional<Score> getScore(Long id) {
 		return scoreRepo.findById(id);
 	}
-	
+
+	@Override
+	public Optional<List<Score>> getAllScoreByMatch(Long matchId) {
+		return Optional.ofNullable(scoreRepo.findByMatch(matchId));
+	}
 	
 
 }

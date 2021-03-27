@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cricket.cricketscorer.entity.Role;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role,Integer> {
+public interface RoleRepository extends JpaRepository<Role,Long> {
 
 	Optional<Role> findByRoleName(String roleName);
 }

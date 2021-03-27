@@ -16,8 +16,8 @@ public class PlayerServiceImpl implements PlayerService{
 	PlayerRepository playerRepo;
 	
 	@Override
-	public Player addPlayer(Player player) {
-		return playerRepo.save(player);
+	public Optional<Player> addPlayer(Player player) {
+		return Optional.ofNullable(playerRepo.save(player));
 	}
 
 	@Override

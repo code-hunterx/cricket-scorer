@@ -16,8 +16,8 @@ public class TeamServiceImpl implements TeamService{
 	TeamRepository teamRepo;
 
 	@Override
-	public Team addTeam(Team team) {
-		return teamRepo.save(team);
+	public Optional<Team> addTeam(Team team) {
+		return Optional.ofNullable(teamRepo.save(team));
 	}
 
 	@Override

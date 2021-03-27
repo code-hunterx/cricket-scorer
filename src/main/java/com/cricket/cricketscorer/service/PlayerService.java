@@ -6,7 +6,7 @@ import com.cricket.cricketscorer.entity.Player;
 
 public interface PlayerService {
 	
-	public Player addPlayer(Player player);
+	public Optional<Player> addPlayer(Player player);
 	
 	public Optional<Player> getPlayer(Long id);
 	

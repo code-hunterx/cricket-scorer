@@ -6,7 +6,7 @@ import com.cricket.cricketscorer.entity.Team;
 
 public interface TeamService {
 	
-	public Team addTeam(Team team);
+	public Optional<Team> addTeam(Team team);
 	
 	public Optional<Team> getTeam(Long id);
 	
