@@ -49,11 +49,23 @@ public class UserServiceImpl implements UserService {
 		user.setFullName(userDto.getFullname());
 		user.setActive(true);
 		UserRole userRole = new UserRole();
-		if (roleRepository.findByRoleName("ROLE_USER").isPresent()) {
-			Role role = roleRepository.findByRoleName("ROLE_USER").get();
+		Optional<Role> optRole = roleRepository.findByRoleName("ROLE_USER");
+		if (optRole.isPresent()) {
+			Role role = optRole.get();
 			userRole.setRole(role);
 			userRole.setUser(user);
 			user.setUserRoles(Arrays.asList(userRole));
+		}
+		
+		String arr[] = userDto.getRoles().split(",");
+		for(String roleName:arr) {
+			optRole = roleRepository.findByRoleName(roleName);
+			if (optRole.isPresent()) {
+				Role role = optRole.get();
+				userRole.setRole(role);
+				userRole.setUser(user);
+				user.setUserRoles(Arrays.asList(userRole));
+			}
 		}
 		return userRepo.save(user);
 	}
