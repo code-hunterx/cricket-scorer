@@ -1,5 +1,7 @@
 package com.cricket.cricketscorer.service.serviceimpl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class TeamServiceImpl implements TeamService{
 	@Override
 	public void deleteTeam(Long id) {
 		teamRepo.deleteById(id);
+	}
+
+	@Override
+	public Optional<Team> getTeam(Long id) {
+		return teamRepo.findById(id);
 	}
 
 }

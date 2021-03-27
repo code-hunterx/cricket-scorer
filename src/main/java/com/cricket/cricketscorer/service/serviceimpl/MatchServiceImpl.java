@@ -1,5 +1,7 @@
 package com.cricket.cricketscorer.service.serviceimpl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class MatchServiceImpl implements MatchService{
 	@Override
 	public void deleteMatch(Long id) {
 		matchRepo.deleteById(id);
+	}
+
+	@Override
+	public Optional<Match> getMatch(Long id){
+		return  matchRepo.findById(id);
 	}
 
 }

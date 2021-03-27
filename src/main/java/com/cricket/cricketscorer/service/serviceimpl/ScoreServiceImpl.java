@@ -118,6 +118,11 @@ public class ScoreServiceImpl implements ScoreService {
 		}
 		return score;
 	}
+
+	@Override
+	public Optional<Score> getScore(Long id) {
+		return scoreRepo.findById(id);
+	}
 	
 	
 
